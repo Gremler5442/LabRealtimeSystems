@@ -6,7 +6,7 @@
 
 int small;
 int large;
-int n = -1234;
+int n = 1234;
 
 int sqrtFunc(int value) {
     if (value < 0) {
