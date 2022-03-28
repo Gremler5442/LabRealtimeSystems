@@ -41,7 +41,7 @@ small:
 large:
         .zero   4
 n:
-        .long   -1234
+        .long   1234
 .LC0:
         .string "error"
 sqrtFunc:
