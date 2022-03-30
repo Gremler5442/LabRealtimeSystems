@@ -4,15 +4,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//глобальные переменные
 int small;
 int large;
 int n = 1234;
 
+//функция вычисления целочисленного корня
 int sqrtFunc(int value) {
+    //если значение отрицательное
     if (value < 0) {
+        //сообщение об ошибке
         printf("error\n");
+        //остановка выполнения программы
         exit(EXIT_FAILURE);
     }
+    //если значение не отрицательное и меньше двух
     else if (value < 2) {
         return value;
     }
