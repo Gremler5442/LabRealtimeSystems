@@ -48,6 +48,7 @@ int main() {
 ```
 Код вычисления целочисленного корня на Asm
 ```asm
+//объявляем переменные
 small:
         .zero   4
 large:
@@ -57,6 +58,7 @@ n:
 .LC0:
         .string "error"
 sqrtFunc:
+        
         push    rbp
         mov     rbp, rsp
         sub     rsp, 16
