@@ -58,11 +58,9 @@ n:
 .LC0:
         .string "error"
 sqrtFunc:
-        //помещаем rbp в стек
         push    rbp
-        //копируем содержимое rbp в rsp
         mov     rbp, rsp
-        //вычитаем 16 из регистра rsp
+        //вычитаем 
         sub     rsp, 16
         //копируем значение регистра rbp, вычитаем 4 и помещаем в edi
         mov     DWORD PTR [rbp-4], edi
