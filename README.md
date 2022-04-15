@@ -60,28 +60,26 @@ n:
 sqrtFunc:
         push    rbp
         mov     rbp, rsp
-        //вычитаем 
         sub     rsp, 16
-        //копируем значение регистра rbp, вычитаем 4 и помещаем в edi
         mov     DWORD PTR [rbp-4], edi
-        //сравниваем значение регистра rbp за вычетом 4 с нулем
+        //если значение положительное jmp в .L2
         cmp     DWORD PTR [rbp-4], 0
-        //если значение положительное jmp в точку .L2
         jns     .L2
+        //если отрицательное выводим ошибку
         mov     edi, OFFSET FLAT:.LC0
         call    puts
         mov     edi, 1
         call    exit
 .L2:
+        //если значение больше 1 jmp в .L3
         cmp     DWORD PTR [rbp-4], 1
-        //если значение больше 1 jmp в точку .L3
         jg      .L3
+        //иначе jmp в .L4
         mov     eax, DWORD PTR [rbp-4]
-        //иначе jmp в точку .L4
         jmp     .L4
 .L3:
+        //делаем побитовое смещение вправо и вычисляем значение small и large
         mov     eax, DWORD PTR [rbp-4]
-        //сдвигаем вправо на 2 бита
         sar     eax, 2
         mov     edi, eax
         call    sqrtFunc
@@ -92,11 +90,11 @@ sqrtFunc:
         mov     DWORD PTR large[rip], eax
         mov     edx, DWORD PTR large[rip]
         mov     eax, DWORD PTR large[rip]
-        //умножаем eax с edx
         imul    eax, edx
         cmp     DWORD PTR [rbp-4], eax
-        //если значение больше или равно, jmp в точку .L5
+        //если если large больше исходного числа jmp в .L5
         jge     .L5
+        //иначе jmp в .L4
         mov     eax, DWORD PTR small[rip]
         jmp     .L4
 .L5:
