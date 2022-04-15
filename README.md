@@ -94,8 +94,10 @@ sqrtFunc:
         mov     DWORD PTR large[rip], eax
         mov     edx, DWORD PTR large[rip]
         mov     eax, DWORD PTR large[rip]
+        //умножаем eax с edx
         imul    eax, edx
         cmp     DWORD PTR [rbp-4], eax
+        //если значение больше или равно, jmp в точку .L5
         jge     .L5
         mov     eax, DWORD PTR small[rip]
         jmp     .L4
