@@ -58,12 +58,17 @@ n:
 .LC0:
         .string "error"
 sqrtFunc:
-        
+        //помещаем rbp в стек
         push    rbp
+        //копируем содержимое rbp в rsp
         mov     rbp, rsp
+        //вычитаем 16 из регистра rsp
         sub     rsp, 16
+        //копируем значение регистра rbp, вычитаем 4 и помещаем в edi
         mov     DWORD PTR [rbp-4], edi
+        //сравниваем значение регистра rbp за вычетом 4 с нулем
         cmp     DWORD PTR [rbp-4], 0
+        //если значение положительное jmp в точку .L2
         jns     .L2
         mov     edi, OFFSET FLAT:.LC0
         call    puts
@@ -71,11 +76,14 @@ sqrtFunc:
         call    exit
 .L2:
         cmp     DWORD PTR [rbp-4], 1
+        //если значение больше 1 jmp в точку .L3
         jg      .L3
         mov     eax, DWORD PTR [rbp-4]
+        //иначе jmp в точку .L4
         jmp     .L4
 .L3:
         mov     eax, DWORD PTR [rbp-4]
+        //сдвигаем вправо на 2 бита
         sar     eax, 2
         mov     edi, eax
         call    sqrtFunc
